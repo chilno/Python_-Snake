@@ -1,0 +1,19 @@
+#form{
+    margin-top: 70px;
+}
+
+#form h1{
+    margin-bottom: 30px;
+}
+
+.ui-datepicker-header{
+	width: auto;
+}
+
+.input-group{
+	width: 100%;
+}
+
+.ui-datepicker-title{
+	width: auto;
+}

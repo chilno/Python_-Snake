@@ -1,0 +1,32 @@
+/*#form{
+    margin-top: 70px;
+}
+
+#form h1{
+    margin-bottom: 30px;
+}*/
+
+
+#title{
+    margin-top:60px;
+}
+
+#title button{
+    margin-top: 12px;
+}
+
+/*#login-dp{
+    height: 100%;
+}*/
+
+/*#login-nav{
+    width: 90%;
+    margin: 0 auto;
+}*/
+
+#login-dp{
+    min-width: 125px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}

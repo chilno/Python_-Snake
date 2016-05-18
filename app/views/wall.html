@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Wall</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link href="{{ url_for('static', filename='css/style-wall.css')}}" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+	    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">MyApp</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="/dashboard">Dashboard</a></li>
+              <li><a href="">Profile</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Hello {{session['first_name']}}</b> <span class="caret"></span></a>
+                <ul id="login-dp" class="dropdown-menu">
+                <li>
+                    <div class="row">
+                      <div class="col-md-12">
+                         <form class="form" role="form" action="/edit/{{session['id']}}" accept-charset="UTF-8" id="login-nav">
+                            <div class="form-group">
+                                 <button type="submit" class="btn btn btn-warning"><b>Edit Profile</b></button>
+                            </div>
+                         </form>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row">
+                      <div class="col-md-12">
+                         <form class="form" role="form" action="/clear" accept-charset="UTF-8" id="login-nav">
+                            <div class="form-group">
+                                 <button type="submit" class="btn btn btn-block"><b>Log Out</b></button>
+                            </div>
+                         </form>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+            </li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+	<div class="container">
+		<div class="row">
+			
+		</div>
+    {% for user in users %}
+        <h3 class="info"><b>{{user['first_name']}} {{user['last_name']}}</b></h3>
+        <div class=" row">
+            <div class="col-xs-3">
+            <h4>Registered at:</h4>
+            <h4>User ID:</h4>
+            <h4>Email address:</h4>
+            <h4>Description:</h4>
+            </div>
+            <div class="col-xs-4">
+            <h4>{{ user['created_at'] }}</h4>
+            <h4>#{{ user['id'] }}</h4>
+            <h4>{{ user['email'] }}</h4>
+            <h4>{{ user['description'] }}</h4>
+            </div>
+            
+        </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="main-post">
+			<h4>Post a Message</h4>
+			<form id="post-form" action="/post/{{user['id']}}" method="POST">
+				<textarea id="post-text" class="well" name="message"></textarea>
+				<button class="btn btn-primary pull-right">Post</button>
+			</form>
+		</div>
+    </div>
+    {% endfor %}
+		<br>
+    {% for message in messages %}
+    <div class="container">
+		<div class="post well col-xs-12">
+			<h5><b>{{message['first_name']}} {{message['last_name']}} - {{message['created_at']}}</b></h5>
+			<p>{{message['message']}}</p>
+      {% for comment in comments %}
+      {% if comment['message_id'] == message['message_id'] %}
+					<div class="comment row well white pull-right">
+					<h5><b>{{comment['first_name']}} {{comment['last_name']}} - {{comment['created_at']}}</b></h5>
+					<p>{{comment['comment']}}</p>
+					</div>
+      {% endif %}
+      {% endfor %}
+		<form action="/comment/{{message['reciever_id']}}/{{message['message_id']}}" method="POST">
+			<textarea class="comment-text white well pull-right" name="comment"></textarea>
+			<button class="btn btn-info pull-right">Comment</button>
+		</form>
+        </div>
+    </div>
+    {% endfor %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>
