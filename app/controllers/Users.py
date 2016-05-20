@@ -47,7 +47,6 @@ class Users(Controller):
             return redirect(url)
 
         else: 
-            print create_status['errors']
             for message in create_status['errors']:
                 flash(message, 'reg')
             return redirect('/register')
@@ -102,6 +101,7 @@ class Users(Controller):
         'last_name': request.form['last_name'],
         'birth_date': request.form['bdate'],
         'email': request.form['email'],
+        'user_level': request.form['user_level'],
         'id': id
         }
         display = self.models['User'].update_user(user_data)
@@ -146,6 +146,25 @@ class Users(Controller):
                 flash(message, 'log')
             return redirect('/edit/'+id)
         
+    def add_user(self):
+        user_info = {
+        'fname' : request.form['first_name'],
+        'lname' : request.form['last_name'],
+        'bdate' : request.form['bdate'],
+        'email' : request.form['email'],
+        'password' : request.form['password'],
+        'confirm_password' : request.form['confirm_password']
+        }
+
+        create_status = self.models['User'].create_user(user_info)
+        if create_status["status"] == True:
+            return redirect('/dashboard')
+
+        else: 
+            print create_status['errors']
+            for message in create_status['errors']:
+                flash(message, 'reg')
+            return redirect('/dashboard')
 
     def clear(self):
         session.clear()

@@ -9,6 +9,12 @@ class User(Model):
     def create_user(self, info):
         EMAIL_REGEX = re.compile(r'^[a-za-z0-9\.\+_-]+@[a-za-z0-9\._-]+\.[a-za-z]*$')
         errors = []
+        query = "SELECT email FROM users WHERE email = :email"
+        data = {
+        'email': info['email']
+        }
+        email_db = self.db.query_db(query, data)
+        print email_db
 
         if not info['fname']:
             errors.append("First Name cannot be blank")
@@ -24,6 +30,8 @@ class User(Model):
             errors.append('Email cannot be blank')
         elif not EMAIL_REGEX.match(info['email']):
             errors.append('Email format must be valid!')
+        if email_db:
+            errors.append('Email already exists in database')
         if not info['password']:
             errors.append('Password cannot be empty')
         elif len(info['password']) < 8:
@@ -95,15 +103,16 @@ class User(Model):
         cmt_query = "SELECT users.id, comments.user_id, message_id, comment, first_name, last_name, comments.created_at FROM wall.users JOIN wall.comments ON users.id = comments.user_id ORDER BY comments.created_at ASC"
         return self.db.query_db(cmt_query)
 
-    def update_info(self, user_data):
+    def update_user(self, user_data):
         text=[]
-        query = "UPDATE users SET first_name= :first_name, last_name= :last_name, email = :email WHERE id= :id"
+        query = "UPDATE users SET first_name= :first_name, last_name= :last_name, birth_date = :birth_date, email = :email, user_level = :user_level WHERE id= :id"
         data = {
         'id': user_data['id'],
         'first_name': user_data['first_name'],
         'last_name': user_data['last_name'],
         'birth_date': user_data['birth_date'],
         'email': user_data['email'],
+        'user_level': user_data['user_level']
         }
         self.db.query_db(query, data)
         text.append("Informations Updated")
