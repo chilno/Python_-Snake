@@ -27,6 +27,7 @@ class Users(Controller):
         return self.load_view('dash.html', users = users)
 
     def delete(self, id):
+        self.models['User'].delete(id)
         return redirect('/dashboard')
 
     def create(self):
@@ -49,7 +50,7 @@ class Users(Controller):
             print create_status['errors']
             for message in create_status['errors']:
                 flash(message, 'reg')
-            return redirect('/')
+            return redirect('/register')
 
     def login(self):
         user_info ={
@@ -67,8 +68,9 @@ class Users(Controller):
             return redirect(url)
         else:
             for message in create_status['errors']:
-                flash(message, 'log')
+                flash(message, 'username')
             return redirect('/')
+
 
     def post(self, id):
         user_info = {

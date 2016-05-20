@@ -16,7 +16,7 @@ class User(Model):
             errors.append("First Name must be at least 2 characters long")
         if not info['lname']:
             errors.append("Last Name cannot be blank")
-        if len(info['lname']) < 2:
+        elif len(info['lname']) < 2:
             errors.append("Last Name must be at least 2 characters long")
         if not info['bdate']:
             errors.append("Birth Date cannot be blank")
@@ -24,10 +24,14 @@ class User(Model):
             errors.append('Email cannot be blank')
         elif not EMAIL_REGEX.match(info['email']):
             errors.append('Email format must be valid!')
+        if not info['password']:
+            errors.append('Password cannot be empty')
         elif len(info['password']) < 8:
             errors.append('Password must be at least 8 characters long')
+        if not info['confirm_password']:
+            errors.append('Confirmation cannot be empty')
         elif info['password'] != info['confirm_password']:
-            errors.append('Password and confirmation must match!')
+            errors.append('Confirmation must match!')
 
         if errors:
             return {"status": False, "errors": errors}
@@ -58,7 +62,7 @@ class User(Model):
         user = self.db.query_db(login_query, data)
         if not user:
         # if len("user['username']") == 0:
-            errors.append('Wrong Username!')
+            errors.append("Username doesn't exist!")
             return {'status': False, "errors":errors}
         elif self.bcrypt.check_password_hash(user[0]['password'], info['password']):
             return {'status': True, 'user':user}
@@ -137,6 +141,15 @@ class User(Model):
         else:
             text.append('Description must be at least 2 charachters')
             return {'status':False, 'text':text}
+
+    def delete(self, id):
+        print "bullshit"
+        query = "DELETE FROM users WHERE id = :id"
+        data = {
+        'id': id
+        }
+        self.db.query_db(query, data)
+        return True
 
 
         

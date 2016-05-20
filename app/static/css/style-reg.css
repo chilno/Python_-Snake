@@ -6,6 +6,10 @@
     margin-bottom: 30px;
 }
 
+#form {
+    margin-bottom: 50px;
+}
+
 .ui-datepicker-header{
 	width: auto;
 }

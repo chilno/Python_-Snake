@@ -14,5 +14,5 @@ routes['/edit/<id>'] = 'Users#edit'
 routes['POST']['/update_info/<id>'] = 'Users#update_info'
 routes['POST']['/update_password/<id>'] = 'Users#update_password'
 routes['POST']['/update_description/<id>'] = 'Users#update_description'
-routes['/delete/<id>'] = 'Users#delete'
+routes['POST']['/delete/<id>'] = 'Users#delete'
 
