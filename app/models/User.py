@@ -45,12 +45,12 @@ class User(Model):
             return {"status": False, "errors": errors}
         else:
             pw_hash = self.bcrypt.generate_password_hash(info['password'])
-            form_date = datetime.strptime(info['bdate'], "%d/%m/%Y")
+            # form_date = datetime.strptime(info['bdate'], "%d/%m/%Y")
             create_query = "INSERT INTO users (first_name, last_name, birth_date, email, password, user_level, created_at, updated_at) VALUES (:first_name, :last_name, :birth_date, :email, :password, :user_level, NOW(), NOW())"
             data = {
             'first_name': info['fname'],
             'last_name': info['lname'],
-            'birth_date': form_date,
+            'birth_date': info['bdate'],
             'email': info['email'],
             'password': pw_hash,
             'user_level': 8
