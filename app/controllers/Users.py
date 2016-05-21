@@ -42,6 +42,7 @@ class Users(Controller):
 
         create_status = self.models['User'].create_user(user_info)
         if create_status["status"] == True:
+            session['first_name'] = create_status['users'][0]['first_name']
             session['id'] = str(create_status['users'][0]['id'])
             url="/user/show/"+session['id']
             return redirect(url)
