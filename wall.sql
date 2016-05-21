@@ -2,7 +2,7 @@
 --
 -- Host: 127.0.0.1    Database: wall
 -- ------------------------------------------------------
--- Server version	5.5.41-log
+-- Server version	5.5.49-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -32,8 +32,8 @@ CREATE TABLE `comments` (
   PRIMARY KEY (`id`),
   KEY `fk_comments_users_idx` (`user_id`),
   KEY `fk_comments_messages1_idx` (`message_id`),
-  CONSTRAINT `fk_comments_messages1` FOREIGN KEY (`message_id`) REFERENCES `messages` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_comments_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_comments_messages1` FOREIGN KEY (`message_id`) REFERENCES `messages` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_comments_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -63,7 +63,7 @@ CREATE TABLE `messages` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_messages_users1_idx` (`user_id`),
-  CONSTRAINT `fk_messages_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_messages_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -73,7 +73,7 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-INSERT INTO `messages` VALUES (1,1,'Hello my name is wizwiz',4,'2016-05-11 00:17:43','2016-05-11 00:17:43'),(2,3,'Hey Guys my name is Faroukee the rookie!',4,'2016-05-11 00:51:53','2016-05-11 00:51:53'),(3,2,'Just un petit Coucou',4,'2016-05-11 01:05:41','2016-05-11 01:05:41'),(4,1,'Un nouveau bb',4,'2016-05-11 17:51:26','2016-05-11 17:51:26'),(5,1,'Hey today is great day',1,'2016-05-17 13:33:40','2016-05-17 13:33:40'),(6,4,'duuude',1,'2016-05-17 15:33:41','2016-05-17 15:33:41'),(7,4,'What\'s upppppp',1,'2016-05-17 15:35:20','2016-05-17 15:35:20'),(8,4,'hey dude what\'s up',7,'2016-05-17 17:29:12','2016-05-17 17:29:12');
+INSERT INTO `messages` VALUES (1,1,'Hello my name is wizwiz',4,'2016-05-11 00:17:43','2016-05-11 00:17:43'),(3,2,'Just un petit Coucou',4,'2016-05-11 01:05:41','2016-05-11 01:05:41'),(4,1,'Un nouveau bb',4,'2016-05-11 17:51:26','2016-05-11 17:51:26'),(5,1,'Hey today is great day',1,'2016-05-17 13:33:40','2016-05-17 13:33:40'),(6,4,'duuude',1,'2016-05-17 15:33:41','2016-05-17 15:33:41'),(7,4,'What\'s upppppp',1,'2016-05-17 15:35:20','2016-05-17 15:35:20'),(8,4,'hey dude what\'s up',7,'2016-05-17 17:29:12','2016-05-17 17:29:12');
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,7 +105,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Nazim','Bellahsene','1981-06-15','nazim.bellahsene@gmail.com','Hey everyone','$2b$12$tAOKlfZQLR8hGt//dBdZv.3DB1uQ7sqmxDsNwzJdyBNxc/oUVhLa2','9','2016-05-10 22:17:07','2016-05-18 01:29:45'),(2,'Wissam','Bellahsene','1976-02-05','agsous.w@outlook.com',NULL,'$2b$12$SF9WkWXkYqSut/rW6nzoZukn21eBFAUTM5JomPZHmbVR34Zhc.GKe',NULL,'2016-05-11 00:48:37','2016-05-11 00:48:37'),(3,'Farouk','Meraz','1950-02-16','meraz@gmail.com',NULL,'$2b$12$vx3nuB0fRZFr9yJHTzlleeB38fldmXPIR7esvZ5zjCwKnaWeuBuru',NULL,'2016-05-11 00:50:43','2016-05-11 00:50:43'),(4,'Frank','Modic','1988-10-03','frank@modic.co',NULL,'$2b$12$A8mOR9ldcqolk9Zegi9xxejxv2nrq0FdyDFxdd4KtffDjKdQ.4u.S','8','2016-05-16 19:00:58','2016-05-16 19:00:58'),(5,'Ana','Argentina','1977-12-10','ana@bel.com',NULL,'$2b$12$r..LuFaeqqfkelbnPUZ5XuUq02xEinOnQxU13kLR8Vp9lTqLTbAZq','8','2016-05-16 19:23:02','2016-05-16 19:23:02'),(6,'Da Eun','Juliette','1999-12-12','juliette@daeun.com',NULL,'$2b$12$xl3Tc3QlMp37cfJxAVzmu.1N/8QH8UVQvR8dnzsM791qQzy7mlohy','8','2016-05-16 21:40:47','2016-05-16 21:40:47'),(7,'Grant','Hugh','1820-12-13','grant@dojo.com',NULL,'$2b$12$oYRvo9mp43DYW2dQnsV11uZr5ugV0c6JO.en1qY.BuX/tXB7DJsdi','8','2016-05-16 21:43:00','2016-05-16 21:43:00'),(8,'Danny','The Dog','1980-05-23','danny@hotdog.com',NULL,'$2b$12$gF7rV6nq0Lb9cQGzf.Jg7uRwa1kqO6gC6cWqAalGC4exKu4WlIBOy','8','2016-05-16 21:49:08','2016-05-16 21:49:08');
+INSERT INTO `users` VALUES (1,'Nazim','Bellahsene','1981-06-15','nazim.bellahsene@gmail.com','Hey everyone','$2b$12$tAOKlfZQLR8hGt//dBdZv.3DB1uQ7sqmxDsNwzJdyBNxc/oUVhLa2','9','2016-05-10 22:17:07','2016-05-18 01:29:45'),(2,'Wissam','Bellahsene','1976-02-05','agsous.w@outlook.com',NULL,'$2b$12$SF9WkWXkYqSut/rW6nzoZukn21eBFAUTM5JomPZHmbVR34Zhc.GKe',NULL,'2016-05-11 00:48:37','2016-05-11 00:48:37'),(4,'Frank','Modic','1988-10-03','frank@modic.co',NULL,'$2b$12$A8mOR9ldcqolk9Zegi9xxejxv2nrq0FdyDFxdd4KtffDjKdQ.4u.S','8','2016-05-16 19:00:58','2016-05-16 19:00:58'),(5,'Ana','Argentina','1977-12-10','ana@bel.com',NULL,'$2b$12$r..LuFaeqqfkelbnPUZ5XuUq02xEinOnQxU13kLR8Vp9lTqLTbAZq','8','2016-05-16 19:23:02','2016-05-16 19:23:02'),(6,'Da Eun','Juliette','1999-12-12','juliette@daeun.com',NULL,'$2b$12$xl3Tc3QlMp37cfJxAVzmu.1N/8QH8UVQvR8dnzsM791qQzy7mlohy','8','2016-05-16 21:40:47','2016-05-16 21:40:47'),(7,'Grant','Hugh','1820-12-13','grant@dojo.com',NULL,'$2b$12$oYRvo9mp43DYW2dQnsV11uZr5ugV0c6JO.en1qY.BuX/tXB7DJsdi','8','2016-05-16 21:43:00','2016-05-16 21:43:00'),(8,'Danny','The Dog','1980-05-23','danny@hotdog.com',NULL,'$2b$12$gF7rV6nq0Lb9cQGzf.Jg7uRwa1kqO6gC6cWqAalGC4exKu4WlIBOy','8','2016-05-16 21:49:08','2016-05-16 21:49:08');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -118,4 +118,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-18 14:28:08
+-- Dump completed on 2016-05-20 22:19:43
