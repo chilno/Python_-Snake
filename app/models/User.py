@@ -45,7 +45,6 @@ class User(Model):
             return {"status": False, "errors": errors}
         else:
             pw_hash = self.bcrypt.generate_password_hash(info['password'])
-            # form_date = datetime.strptime(info['bdate'], "%d/%m/%Y")
             create_query = "INSERT INTO users (first_name, last_name, birth_date, email, password, user_level, created_at, updated_at) VALUES (:first_name, :last_name, :birth_date, :email, :password, :user_level, NOW(), NOW())"
             data = {
             'first_name': info['fname'],
@@ -56,7 +55,6 @@ class User(Model):
             'user_level': 8
             }
             self.db.query_db(create_query, data)
-
             get_user_query = "SELECT * FROM users ORDER BY id DESC LIMIT 1"
             users = self.db.query_db(get_user_query)
             return{"status":True, "users": users}
@@ -69,7 +67,6 @@ class User(Model):
         }
         user = self.db.query_db(login_query, data)
         if not user:
-        # if len("user['username']") == 0:
             errors.append("Username doesn't exist!")
             return {'status': False, "errors":errors}
         elif self.bcrypt.check_password_hash(user[0]['password'], info['password']):
