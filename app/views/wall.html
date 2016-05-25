@@ -4,7 +4,7 @@
 	<title>Search</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 <!--    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
-    <link href="../static/css/style-wall.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/style-wall.css" rel="stylesheet" type="text/css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -21,8 +21,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li><a href="/dashboard">Search</a></li>
-              <li><a href="/user/show/{{session['id']}}">Profile</a></li>
+              <li><a href="/dashboard">Manage</a></li>
+              <li><a href="/user/show/{{session['id']}}">Search</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -58,7 +58,7 @@
     </nav>
     <div id="look">
         <div class="container">
-            <form class="col-md-6 col-md-offset-3">
+            <form class="col-md-6 col-md-offset-3" action="/getMap" method="get">
                 <fieldset class="form-group">
             <label>Location</label>
             <input type="text" class="form-control" placeholder="From ....?" name ="first_name">

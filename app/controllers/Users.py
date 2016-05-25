@@ -1,7 +1,10 @@
 from system.core.controller import *
 from time import strftime, gmtime
-from flask import flash
+from flask import flash, jsonify
 from datetime import datetime, date, timedelta
+from key import key
+import urllib2
+import json
 
 class Users(Controller):
     def __init__(self, action):
@@ -170,3 +173,42 @@ class Users(Controller):
     def clear(self):
         session.clear()
         return redirect('/')
+
+
+    def getIt(self, ):
+        
+        user_dest = request.args['destination']
+        key = 'AIzaSyDtUacD4feeXpYF3Fg_XkSAGqa7ZehTk2c'
+        locality = user_dest.replace(' ', '%20')
+        url = 'https://maps.googleapis.com/maps/api/geocode/json?'
+        if user_dest:
+            final_url = url+'address='+locality+'&key='+key
+        # else:
+        #     final_url = url+'latlng='+
+
+        json_obj =  urllib2.urlopen(final_url)
+        data = json.load(json_obj)
+        print data
+        search_payload = {'key': key, 'query': user_dest}
+        search_req = request.get(url, params = search_payload)
+        search_json = search_req.json()
+        place_id = search_json['results'][0]['place_id']
+        print data
+
+        return redirect('/get_map')
+
+    # def googlePlaces(self, lat, lng, radius, types, key):
+    #     auth_key = 'AIzaSyDtUacD4feeXpYF3Fg_XkSAGqa7ZehTk2c'
+    #     location = str(lat)+','+str(lng)
+    #     radius = radius
+    #     types = types
+    #     myURL = ('https://maps.googleapis.com/maps/api/place/nearbysearch/json'
+    #             '?location=%s'
+    #             '&radius=%s'
+    #             '&types=%s'
+    #             '&sensor=false&key=%s')  % (location, radius, types, auth_key)
+    #     response = urllib2.urlopen(myURL)
+    #     print response
+
+    def get_map(self):
+        return self.load_view('map.html')

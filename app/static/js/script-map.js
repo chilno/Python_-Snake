@@ -35,12 +35,19 @@ $(document).ready(function(){
     var infowindow = new google.maps.InfoWindow({
         content: "holding..."
     });
+/*
+    var request = {
+          location:
+    };*/
+
+    //Places service
+
     
     //fire map
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
     //Grap form data
-    $("#form").submit(function(){
+/*    $("#form").submit(function(){
      //relocate map
           var userDest = $("#destination").val();
           var userType = $("#type").val();
@@ -62,6 +69,8 @@ $(document).ready(function(){
           newCenter = new google.maps.LatLng(userLat, userLon)
           map.setCenter(newCenter);
           }, 'json');
+
+
           return false;
-     });
+     });*/
 });
