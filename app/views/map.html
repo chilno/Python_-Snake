@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<!--    <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>-->
+    <link href="../static/css/style-map.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key="></script>-->
+    <script type="text/javascript" src="../static/js/script-map.js"></script>
+</head>
+<body>
+	    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/user/show/{{session['id']}}">LastMinute Plan</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="/dashboard">Search</a></li>
+              <li><a href="/user/show/{{session['id']}}">Profile</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Hello {{session['first_name']}}</b> <span class="caret"></span></a>
+                <ul id="login-dp" class="dropdown-menu">
+                <li>
+                    <div class="row">
+                      <div class="col-md-12">
+                         <form class="form" role="form" action="/edit/{{session['id']}}" accept-charset="UTF-8" id="login-nav">
+                            <div class="form-group">
+                                 <button type="submit" class="btn btn btn-warning"><b>Edit Profile</b></button>
+                            </div>
+                         </form>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row">
+                      <div class="col-md-12">
+                         <form class="form" role="form" action="/clear" accept-charset="UTF-8" id="login-nav">
+                            <div class="form-group">
+                                 <button type="submit" class="btn btn btn-block"><b>Log Out</b></button>
+                            </div>
+                         </form>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+            </li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+    <div id="look">
+        <div class="container">
+            <form id="form" class="col-md-3" method="GET">
+                <fieldset class="form-group">
+            <label>Location</label>
+            <input type="text" class="form-control" placeholder="From ....?" name ="first_name">
+<!--            {% with messages = get_flashed_messages(category_filter=['reg']) %}
+              {% if messages %}
+                {% for message in messages %}
+                  {% if "First" in message %}
+                    <p style="color: red"> {{message}} </p>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endwith %}-->
+          </fieldset>
+            <fieldset class="form-group">
+            <label>Destination</label>
+            <input id = "destination" type="text" class="form-control" placeholder="To ....?" name ="destination">
+<!--            {% with messages = get_flashed_messages(category_filter=['reg']) %}
+              {% if messages %}
+                {% for message in messages %}
+                  {% if "First" in message %}
+                    <p style="color: red"> {{message}} </p>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endwith %}-->
+          </fieldset>
+          <fieldset class="form-group">
+            <label>Type</label>
+            <input type="text" class="form-control" placeholder="What?" name ="location">
+<!--            {% with messages = get_flashed_messages(category_filter=['reg']) %}
+              {% if messages %}
+                {% for message in messages %}
+                  {% if "Last" in message %}
+                    <p style="color: red"> {{message}} </p>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endwith %}-->
+          </fieldset>
+          <fieldset id="test" class="form-group">
+            <label>Time</label>
+            <div class="input-group bootstrap-timepicker timepicker">
+            <input id="timepicker" type="time" class="form-control input-small">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+        </div>
+<!--            {% with messages = get_flashed_messages(category_filter=['reg']) %}
+              {% if messages %}
+                {% for message in messages %}
+                  {% if "Birth" in message %}
+                    <p style="color: red"> {{message}} </p>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endwith %}-->
+          </fieldset>
+          <button type="submit" class="btn btn-primary pull-right">Go Get It!</button>
+            </form>
+            <div id="map" class="col-md-9"></div>
+        </div>
+    </div>
+
+</body>
+</html>

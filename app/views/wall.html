@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>The Wall</title>
+	<title>Search</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <link href="{{ url_for('static', filename='css/style-wall.css')}}" rel="stylesheet">
+<!--    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
+    <link href="../static/css/style-wall.css" rel="stylesheet" type="text/css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -17,11 +17,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/user/show/{{session['id']}}">MyApp</a>
+          <a class="navbar-brand" href="/user/show/{{session['id']}}">LMP</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li><a href="/dashboard">Dashboard</a></li>
+              <li><a href="/dashboard">Search</a></li>
               <li><a href="/user/show/{{session['id']}}">Profile</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -56,60 +56,68 @@
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
-	<div class="container">
-		<div class="row">
-			
-		</div>
-    {% for user in users %}
-        <h3 class="info"><b>{{user['first_name']}} {{user['last_name']}}</b></h3>
-        <div class=" row">
-            <div class="col-xs-3">
-            <h4>Registered at:</h4>
-            <h4>User ID:</h4>
-            <h4>Email address:</h4>
-            <h4>Description:</h4>
-            </div>
-            <div class="col-xs-4">
-            <h4>{{ user['created_at'] }}</h4>
-            <h4>#{{ user['id'] }}</h4>
-            <h4>{{ user['email'] }}</h4>
-            <h4>{{ user['description'] }}</h4>
-            </div>
-            
+    <div id="look">
+        <div class="container">
+            <form class="col-md-6 col-md-offset-3">
+                <fieldset class="form-group">
+            <label>Location</label>
+            <input type="text" class="form-control" placeholder="From ....?" name ="first_name">
+<!--            {% with messages = get_flashed_messages(category_filter=['reg']) %}
+              {% if messages %}
+                {% for message in messages %}
+                  {% if "First" in message %}
+                    <p style="color: red"> {{message}} </p>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endwith %}-->
+          </fieldset>
+            <fieldset class="form-group">
+            <label>Destination</label>
+            <input type="text" class="form-control" placeholder="To ....?" name ="destination">
+<!--            {% with messages = get_flashed_messages(category_filter=['reg']) %}
+              {% if messages %}
+                {% for message in messages %}
+                  {% if "First" in message %}
+                    <p style="color: red"> {{message}} </p>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endwith %}-->
+          </fieldset>
+          <fieldset class="form-group">
+            <label>Type</label>
+            <input type="text" class="form-control" placeholder="What?" name ="location">
+<!--            {% with messages = get_flashed_messages(category_filter=['reg']) %}
+              {% if messages %}
+                {% for message in messages %}
+                  {% if "Last" in message %}
+                    <p style="color: red"> {{message}} </p>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endwith %}-->
+          </fieldset>
+          <fieldset id="test" class="form-group">
+            <label>Time</label>
+            <div class="input-group bootstrap-timepicker timepicker">
+            <input id="timepicker" type="time" class="form-control input-small">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
         </div>
+<!--            {% with messages = get_flashed_messages(category_filter=['reg']) %}
+              {% if messages %}
+                {% for message in messages %}
+                  {% if "Birth" in message %}
+                    <p style="color: red"> {{message}} </p>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endwith %}-->
+          </fieldset>
+          <button type="submit" class="btn btn-primary pull-right">Go Get It!</button>
+            </form>
         </div>
     </div>
-    <div class="container">
-        <div class="main-post">
-			<h4>Post a Message</h4>
-			<form id="post-form" action="/post/{{user['id']}}" method="POST">
-				<textarea id="post-text" class="well" name="message"></textarea>
-				<button class="btn btn-primary pull-right">Post</button>
-			</form>
-		</div>
-    </div>
-    {% endfor %}
-		<br>
-    {% for message in messages %}
-    <div class="container">
-		<div class="post well col-xs-12">
-			<h5><b>{{message['first_name']}} {{message['last_name']}} - {{message['created_at']}}</b></h5>
-			<p>{{message['message']}}</p>
-      {% for comment in comments %}
-      {% if comment['message_id'] == message['message_id'] %}
-					<div class="comment row well white pull-right">
-					<h5><b>{{comment['first_name']}} {{comment['last_name']}} - {{comment['created_at']}}</b></h5>
-					<p>{{comment['comment']}}</p>
-					</div>
-      {% endif %}
-      {% endfor %}
-		<form action="/comment/{{message['reciever_id']}}/{{message['message_id']}}" method="POST">
-			<textarea class="comment-text white well pull-right" name="comment"></textarea>
-			<button class="btn btn-info pull-right">Comment</button>
-		</form>
-        </div>
-    </div>
-    {% endfor %}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>

@@ -1,3 +1,7 @@
+form{
+    margin-top: 100px;
+}
+
 .well{
     margin-top: 10px;
 }
@@ -32,3 +36,10 @@
     overflow:hidden;
     background-color:rgba(255,255,255,.8);
 }
+
+#look{
+    height: auto;
+    background-color: silver;
+    padding-bottom: 50px;
+}
+
