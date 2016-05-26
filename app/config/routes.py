@@ -18,4 +18,5 @@ routes['POST']['/delete/<id>'] = 'Users#delete'
 routes['POST']['/add_user'] = 'Users#add_user'
 routes['POST']['/locate'] ='Users#locate'
 routes['/show_map'] = 'Users#show_map'
+routes['POST']['/marker'] ='Users#marker'
 

@@ -42,11 +42,12 @@ $(document).ready(function(){
     //Grap form data
     $("#form").submit(function(e){
         e.preventDefault();
-        $.post('/locate',$(this).serialize(), function(res) {
+        $.post('/marker',$(this).serialize(), function(res) {
             console.log(res);
             $('#data').html(res);
            
         });
      });
 //    return false;
+    
 });

@@ -1,0 +1,53 @@
+
+  <div id='data'>
+    <script>
+         var map;
+      var infowindow;
+
+      function initMap() {
+        var loc = {lat: {{data['results'][0]['geometry']['location']['lat']}}, lng: {{data['results'][0]['geometry']['location']['lng']}}};
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: loc,
+          zoom: 15
+        });
+
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: loc,
+          radius: 1500,
+          type: ['restaurant']
+        }, callback);
+      }
+
+      function callback(results, status) {
+          console.log(results);
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+      }
+
+      function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
+        var name = place.name;
+        var Rid;
+        $.get('http://opentable.herokuapp.com/api/restaurants?name='+name, function(res){
+            console.log(res);
+        });   
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+          'Place address: ' + place.formatted_address + '</div>');
+          infowindow.open(map, this);
+        });
+      }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtUacD4feeXpYF3Fg_XkSAGqa7ZehTk2c&libraries=places&callback=initMap" async defer></script>
+  </div>
+

@@ -183,4 +183,11 @@ class Users(Controller):
         print data
         return self.load_view('/partials/bob.html', data=data)
     
+    def marker(self):
+        user_dest = request.form['destination']
+        print user_dest
+        data =self.models['User'].get_data(user_dest)
+        print data
+        return self.load_view('/partials/marker.html', data=data)
+    
     
