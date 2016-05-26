@@ -160,19 +160,16 @@ class User(Model):
         return True
 
 
-    def get_data(self, user_dest):
+    def get_data(self, posData):
         key = 'AIzaSyDtUacD4feeXpYF3Fg_XkSAGqa7ZehTk2c'
-        locality = user_dest.replace(' ', '%20')
         url = 'https://maps.googleapis.com/maps/api/geocode/json?'
-        if user_dest:
+        if 'lng' in posData:
+            final_url = url+'latlng='+posData['lat']+','+posData['lng']+'&key='+key  
+        else:
+            locality = posData.replace(' ', '%20')
             final_url = url+'address='+locality+'&key='+key
-#         else:
-#             final_url = url+'latlng='+
 
         json_obj =  urllib2.urlopen(final_url)
         test = json_obj.read()
         data = json.loads(test)
-        print data
-#        test = json.load(json_obj)
-##        data =json.dumps(test)
         return data

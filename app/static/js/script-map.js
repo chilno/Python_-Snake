@@ -40,10 +40,12 @@ $(document).ready(function(){
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
     //Grap form data
+
     $("#form").submit(function(e){
         e.preventDefault();
-        $.post('/locate',$(this).serialize(), function(res) {
-            console.log(res);
+        var data = {destination : $('#destination').val(), userCords : userCords};
+        $.post('/locate', data, function(res) {
+
             $('#data').html(res);
            
         });

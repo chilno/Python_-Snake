@@ -1,8 +1,9 @@
 from system.core.controller import *
 from time import strftime, gmtime
-from flask import flash,json
+from flask import flash,json,request
 from datetime import datetime, date, timedelta
 import urllib2
+import sys
 
 class Users(Controller):
     def __init__(self, action):
@@ -178,9 +179,16 @@ class Users(Controller):
     
     def locate(self):
         user_dest = request.form['destination']
-        print user_dest
-        data =self.models['User'].get_data(user_dest)
-        print data
+        userCordsLng = request.form['userCords[longitude]']
+        userCordsLat = request.form['userCords[latitude]']
+        userPos = {
+        'lng': userCordsLng,
+        'lat': userCordsLat
+        }
+        if user_dest:
+            data =self.models['User'].get_data(user_dest)
+        else:
+            data=self.models['User'].get_data(userPos)
         return self.load_view('/partials/bob.html', data=data)
     
     
