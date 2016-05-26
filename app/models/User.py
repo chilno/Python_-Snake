@@ -1,6 +1,8 @@
 from system.core.model import Model
 import re
 from datetime import datetime, date, timedelta
+import urllib2
+from flask import flash,json
 
 class User(Model):
     def __init__(self):
@@ -158,4 +160,19 @@ class User(Model):
         return True
 
 
-        
+    def get_data(self, user_dest):
+        key = 'AIzaSyDtUacD4feeXpYF3Fg_XkSAGqa7ZehTk2c'
+        locality = user_dest.replace(' ', '%20')
+        url = 'https://maps.googleapis.com/maps/api/geocode/json?'
+        if user_dest:
+            final_url = url+'address='+locality+'&key='+key
+#         else:
+#             final_url = url+'latlng='+
+
+        json_obj =  urllib2.urlopen(final_url)
+        test = json_obj.read()
+        data = json.loads(test)
+        print data
+#        test = json.load(json_obj)
+##        data =json.dumps(test)
+        return data

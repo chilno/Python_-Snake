@@ -1,7 +1,8 @@
 from system.core.controller import *
 from time import strftime, gmtime
-from flask import flash
+from flask import flash,json
 from datetime import datetime, date, timedelta
+import urllib2
 
 class Users(Controller):
     def __init__(self, action):
@@ -20,7 +21,7 @@ class Users(Controller):
         users = self.models['User'].show_user(id)
         messages = self.models['User'].get_messages(id)
         comments = self.models['User'].get_comments()
-        return self.load_view('wall.html', users = users, messages = messages, comments=comments)
+        return self.load_view('map.html', users = users, messages = messages, comments=comments)
 
     def dashboard(self):
         users = self.models['User'].show_users(session['id'])
@@ -170,3 +171,16 @@ class Users(Controller):
     def clear(self):
         session.clear()
         return redirect('/')
+    
+    def show_map(self):
+        return self.load_view('map.html')
+
+    
+    def locate(self):
+        user_dest = request.form['destination']
+        print user_dest
+        data =self.models['User'].get_data(user_dest)
+        print data
+        return self.load_view('/partials/bob.html', data=data)
+    
+    

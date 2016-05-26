@@ -16,4 +16,6 @@ routes['POST']['/update_password/<id>'] = 'Users#update_password'
 routes['POST']['/update_description/<id>'] = 'Users#update_description'
 routes['POST']['/delete/<id>'] = 'Users#delete'
 routes['POST']['/add_user'] = 'Users#add_user'
+routes['POST']['/locate'] ='Users#locate'
+routes['/show_map'] = 'Users#show_map'
 

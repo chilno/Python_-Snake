@@ -40,28 +40,13 @@ $(document).ready(function(){
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
     //Grap form data
-    $("#form").submit(function(){
-     //relocate map
-          var userDest = $("#destination").val();
-          var userType = $("#type").val();
-          var restaurants;
-          var accessURL;
-
-          if(userDest){
-          accessURL = "https://maps.googleapis.com/maps/api/geocode/json?address="+userDest+"&key=AIzaSyDtUacD4feeXpYF3Fg_XkSAGqa7ZehTk2c"
-          }
-          else{
-          accessURL = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ userCords.latitude +","+ userCords.longitude +"&key=AIzaSyDtUacD4feeXpYF3Fg_XkSAGqa7ZehTk2c"
-          }
-
-
-          $.get(accessURL, function(loc){
-
-          userLat = loc.results[0].geometry.location.lat;
-          userLon = loc.results[0].geometry.location.lng;
-          newCenter = new google.maps.LatLng(userLat, userLon)
-          map.setCenter(newCenter);
-          }, 'json');
-          return false;
+    $("#form").submit(function(e){
+        e.preventDefault();
+        $.post('/locate',$(this).serialize(), function(res) {
+            console.log(res);
+            $('#data').html(res);
+           
+        });
      });
+//    return false;
 });
