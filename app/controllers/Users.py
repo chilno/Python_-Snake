@@ -178,11 +178,15 @@ class Users(Controller):
 
     
     def locate(self):
-        user_dest = request.form['destination']
-        userCordsLng = request.form['userCords[longitude]']
-        userCordsLat = request.form['userCords[latitude]']
-        userType = request.form['type']
-        print userType
+        if 'destination' in request.form:
+            user_dest = request.form['destination']
+        if 'userCords[longitude]' in request.form:
+            userCordsLng = request.form['userCords[longitude]']
+        if 'userCords[latitude]' in request.form:
+            userCordsLat = request.form['userCords[latitude]']
+        if 'type' in request.form:
+            userType = request.form['type']
+
         userPos = {
         'lng': userCordsLng,
         'lat': userCordsLat

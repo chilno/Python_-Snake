@@ -47,17 +47,12 @@
         var name = place.name;
         var add = place.vicinity[0]+place.vicinity[1]+place.vicinity[2]+place.vicinity[3];
         var Rid;
-/*<<<<<<< HEAD
-        $.get('http://opentable.herokuapp.com/api/restaurants?name='+name, function(res){
-*/
-/*=======*/
         $.get('http://opentable.herokuapp.com/api/restaurants?name='+name+'&address='+add, function(res){
         if(res['total_entries']== 0){
         Rid = 0;}
         else{    
         Rid = res['restaurants'][0]['id'];}
         console.log(Rid);
-/*>>>>>>> 5cdc87698735e84c7ed74177b3e5d5512df2e24e*/
         });   
         google.maps.event.addListener(marker, 'click', function() {
             if ( Rid == 0){
