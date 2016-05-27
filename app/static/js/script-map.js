@@ -43,12 +43,12 @@ $(document).ready(function(){
 
     $("#form").submit(function(e){
         e.preventDefault();
-        var data = {destination : $('#destination').val(), userCords : userCords};
+        var data = {destination : $('#destination').val(), type : $('#type').val(), userCords : userCords};
         $.post('/locate', data, function(res) {
+            $('#list').html(res);
 
-            $('#data').html(res);
-           
         });
      });
-//    return false;
+
+
 });

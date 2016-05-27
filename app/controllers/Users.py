@@ -181,6 +181,8 @@ class Users(Controller):
         user_dest = request.form['destination']
         userCordsLng = request.form['userCords[longitude]']
         userCordsLat = request.form['userCords[latitude]']
+        userType = request.form['type']
+        print userType
         userPos = {
         'lng': userCordsLng,
         'lat': userCordsLat
@@ -189,6 +191,13 @@ class Users(Controller):
             data =self.models['User'].get_data(user_dest)
         else:
             data=self.models['User'].get_data(userPos)
-        return self.load_view('/partials/bob.html', data=data)
+        return self.load_view('/partials/marker.html', data=data, type=userType)
+    
+    def marker(self):
+        user_dest = request.form['destination']
+        print user_dest
+        data =self.models['User'].get_data(user_dest)
+        print data
+        return self.load_view('/partials/marker.html', data=data)
     
     

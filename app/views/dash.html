@@ -16,12 +16,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/user/show/{{session['id']}}">MyApp</a>
+      <a class="navbar-brand" href="/user/show/{{session['id']}}">LastMintue Plan</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li><a href="/dashboard">Dashboard</a></li>
-        <li><a href="/user/show/{{session['id']}}">Profile</a></li>
+        <li><a href="/user/show/{{session['id']}}">Search</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -184,7 +184,7 @@
         <td>{{user['email']}}</td>
         <td>{{user['created_at']}}</td>
         <td class="text-center">{{user['user_level']}}</td>
-        <td class="text-center"><p><a href="/user/show/{{ user['id'] }}"> show</a> | <a href="/edit/{{ user['id'] }}">edit</a> | <a href="#" type="button"  data-toggle="modal" data-target=".bs-example-modal-sm{{user['id']}}">Delete</a></p></td>
+        <td class="text-center"><p><a href="/edit/{{ user['id'] }}">edit</a> | <a href="#" type="button"  data-toggle="modal" data-target=".bs-example-modal-sm{{user['id']}}">Delete</a></p></td>
 
         <div id = "" class="modal fade bs-example-modal-sm{{user['id']}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
           <div class="modal-dialog modal-sm">

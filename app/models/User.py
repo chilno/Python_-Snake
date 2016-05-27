@@ -173,3 +173,21 @@ class User(Model):
         test = json_obj.read()
         data = json.loads(test)
         return data
+
+
+    def get_marker(self, user_dest):
+        key = 'AIzaSyDtUacD4feeXpYF3Fg_XkSAGqa7ZehTk2c'
+        locality = user_dest.replace(' ', '%20')
+        url = 'https://maps.googleapis.com/maps/api/geocode/json?'
+        if user_dest:
+            final_url = url+'address='+locality+'&key='+key
+#         else:
+#             final_url = url+'latlng='+
+
+        json_obj =  urllib2.urlopen(final_url)
+        test = json_obj.read()
+        data = json.loads(test)
+        print data
+#        test = json.load(json_obj)
+##        data =json.dumps(test)
+        return data

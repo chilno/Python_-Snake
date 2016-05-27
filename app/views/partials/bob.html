@@ -1,7 +1,7 @@
 
   <div id='data'>
     <script>
-         var mapOptions = {
+        var mapOptions = {
         zoom:12,
         center: new google.maps.LatLng(37.7749, -122.4194),
         panControl: false,
@@ -20,7 +20,7 @@
     var infowindow = new google.maps.InfoWindow({
         content: "holding..."
     });
-         map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
         userLat= {{data['results'][0]['geometry']['location']['lat']}};
         userLng = {{data['results'][0]['geometry']['location']['lng']}};
         newCenter = new google.maps.LatLng(userLat, userLng);
