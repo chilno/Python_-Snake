@@ -182,15 +182,16 @@ class Users(Controller):
             user_dest = request.form['destination']
         if 'userCords[longitude]' in request.form:
             userCordsLng = request.form['userCords[longitude]']
-        if 'userCords[latitude]' in request.form:
-            userCordsLat = request.form['userCords[latitude]']
+            if 'userCords[latitude]' in request.form:
+                userCordsLat = request.form['userCords[latitude]']
+                userPos = {
+                    'lng': userCordsLng,
+                    'lat': userCordsLat
+                }
         if 'type' in request.form:
             userType = request.form['type']
 
-        userPos = {
-        'lng': userCordsLng,
-        'lat': userCordsLat
-        }
+
         if user_dest:
             data =self.models['User'].get_data(user_dest)
         else:
