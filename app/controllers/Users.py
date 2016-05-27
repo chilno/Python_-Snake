@@ -195,7 +195,7 @@ class Users(Controller):
                 data=self.models['User'].get_data(userPos)
         # if 'type' in request.form:
         #     userType = request.form['type']
-        if request.form['type']:
+        if 'type' in request.form:
             userType = request.form['type']
 
         
