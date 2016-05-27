@@ -192,7 +192,8 @@ class Users(Controller):
                     'lng': userCordsLng,
                     'lat': userCordsLat
                 }
-                data=self.models['User'].get_data(userPos)
+                print "fuck"
+                data =self.models['User'].get_data(userPos)
         # if 'type' in request.form:
         #     userType = request.form['type']
         if 'type' in request.form:
