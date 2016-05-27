@@ -180,22 +180,28 @@ class Users(Controller):
     def locate(self):
         if 'destination' in request.form:
             user_dest = request.form['destination']
-        if 'userCords[longitude]' in request.form:
-            userCordsLng = request.form['userCords[longitude]']
-            if 'userCords[latitude]' in request.form:
-                userCordsLat = request.form['userCords[latitude]']
-                userPos = {
-                    'lng': userCordsLng,
-                    'lat': userCordsLat
-                }
-        if 'type' in request.form:
-            userType = request.form['type']
-
-
-        if user_dest:
+            if user_dest:
+                if 'type' in request.form:
+                userType = request.form['type']
             data =self.models['User'].get_data(user_dest)
-        else:
+
+            else:   
+                if 'userCords[longitude]' in request.form:
+                    userCordsLng = request.form['userCords[longitude]']
+                    if 'userCords[latitude]' in request.form:
+                        userCordsLat = request.form['userCords[latitude]']
+                        userPos = {
+                            'lng': userCordsLng,
+                            'lat': userCordsLat
+                        }
             data=self.models['User'].get_data(userPos)
+        # if 'type' in request.form:
+        #     userType = request.form['type']
+
+
+        
+        # else:
+            
         return self.load_view('/partials/marker.html', data=data, type=userType)
     
     def marker(self):
