@@ -45,14 +45,27 @@
           position: place.geometry.location
         });
         var name = place.name;
+        var add = place.vicinity[0]+place.vicinity[1]+place.vicinity[2]+place.vicinity[3];
         var Rid;
+/*<<<<<<< HEAD
         $.get('http://opentable.herokuapp.com/api/restaurants?name='+name, function(res){
-/*            console.log(res);*/
+*/
+/*=======*/
+        $.get('http://opentable.herokuapp.com/api/restaurants?name='+name+'&address='+add, function(res){
+        if(res['total_entries']== 0){
+        Rid = 0;}
+        else{    
+        Rid = res['restaurants'][0]['id'];}
+        console.log(Rid);
+/*>>>>>>> 5cdc87698735e84c7ed74177b3e5d5512df2e24e*/
         });   
         google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-          'Place address: ' + place.formatted_address + '</div>');
-          infowindow.open(map, this);
+            if ( Rid == 0){
+                infowindow.setContent('<div><strong>' + place.name + '</strong><br>');
+                infowindow.open(map, this);}
+            else{
+          infowindow.setContent('<div><strong>' + place.name + '</strong><br>'+'<a href="http://www.opentable.com/single.aspx?rid='+Rid+'&restref='+Rid+'&rtype=ism">Reserve Now  on OpenTable.com</a>' + '</div>');
+          infowindow.open(map, this);}
         });
       };
       </script>

@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.7.9, for Win32 (AMD64)
+-- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: wall
 -- ------------------------------------------------------
@@ -96,7 +96,7 @@ CREATE TABLE `users` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,7 +105,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Nazim','Bellahsene','1981-06-15','nazim.bellahsene@gmail.com','Hey everyone','$2b$12$tAOKlfZQLR8hGt//dBdZv.3DB1uQ7sqmxDsNwzJdyBNxc/oUVhLa2','9','2016-05-10 22:17:07','2016-05-18 01:29:45'),(2,'Wissam','Bellahsene','1976-02-05','agsous.w@outlook.com',NULL,'$2b$12$SF9WkWXkYqSut/rW6nzoZukn21eBFAUTM5JomPZHmbVR34Zhc.GKe',NULL,'2016-05-11 00:48:37','2016-05-11 00:48:37'),(4,'Frank','Modic','1988-10-03','frank@modic.co',NULL,'$2b$12$A8mOR9ldcqolk9Zegi9xxejxv2nrq0FdyDFxdd4KtffDjKdQ.4u.S','8','2016-05-16 19:00:58','2016-05-16 19:00:58'),(5,'Ana','Argentina','1977-12-10','ana@bel.com',NULL,'$2b$12$r..LuFaeqqfkelbnPUZ5XuUq02xEinOnQxU13kLR8Vp9lTqLTbAZq','8','2016-05-16 19:23:02','2016-05-16 19:23:02'),(6,'Da Eun','Juliette','1999-12-12','juliette@daeun.com',NULL,'$2b$12$xl3Tc3QlMp37cfJxAVzmu.1N/8QH8UVQvR8dnzsM791qQzy7mlohy','8','2016-05-16 21:40:47','2016-05-16 21:40:47'),(7,'Grant','Hugh','1820-12-13','grant@dojo.com',NULL,'$2b$12$oYRvo9mp43DYW2dQnsV11uZr5ugV0c6JO.en1qY.BuX/tXB7DJsdi','8','2016-05-16 21:43:00','2016-05-16 21:43:00'),(8,'Danny','The Dog','1980-05-23','danny@hotdog.com',NULL,'$2b$12$gF7rV6nq0Lb9cQGzf.Jg7uRwa1kqO6gC6cWqAalGC4exKu4WlIBOy','8','2016-05-16 21:49:08','2016-05-16 21:49:08');
+INSERT INTO `users` VALUES (1,'Nazim','Bellahsene','1981-06-15','nazim.bellahsene@gmail.com','Hey everyone','$2b$12$tAOKlfZQLR8hGt//dBdZv.3DB1uQ7sqmxDsNwzJdyBNxc/oUVhLa2','9','2016-05-10 22:17:07','2016-05-18 01:29:45'),(2,'Wissam','Bellahsene','1976-02-05','agsous.w@outlook.com',NULL,'$2b$12$SF9WkWXkYqSut/rW6nzoZukn21eBFAUTM5JomPZHmbVR34Zhc.GKe','8','2016-05-11 00:48:37','2016-05-11 00:48:37'),(4,'Frank','Modic','1988-10-03','frank@modic.co',NULL,'$2b$12$A8mOR9ldcqolk9Zegi9xxejxv2nrq0FdyDFxdd4KtffDjKdQ.4u.S','8','2016-05-16 19:00:58','2016-05-16 19:00:58'),(5,'Ana','Argentina','1977-12-10','ana@bel.com',NULL,'$2b$12$r..LuFaeqqfkelbnPUZ5XuUq02xEinOnQxU13kLR8Vp9lTqLTbAZq','8','2016-05-16 19:23:02','2016-05-16 19:23:02'),(6,'Da Eun','Juliette','1999-12-12','juliette@daeun.com',NULL,'$2b$12$xl3Tc3QlMp37cfJxAVzmu.1N/8QH8UVQvR8dnzsM791qQzy7mlohy','8','2016-05-16 21:40:47','2016-05-16 21:40:47'),(7,'Grant','Hugh','1820-12-13','grant@dojo.com',NULL,'$2b$12$oYRvo9mp43DYW2dQnsV11uZr5ugV0c6JO.en1qY.BuX/tXB7DJsdi','8','2016-05-16 21:43:00','2016-05-16 21:43:00'),(8,'Danny','The Dog','1980-05-23','danny@hotdog.com',NULL,'$2b$12$gF7rV6nq0Lb9cQGzf.Jg7uRwa1kqO6gC6cWqAalGC4exKu4WlIBOy','8','2016-05-16 21:49:08','2016-05-16 21:49:08'),(9,'Derek','Doe','2016-05-27','derek@gmail.com',NULL,'$2b$12$zmvM3DjVYTGvG23Eq44lNeqW5DdE3fO.fp90OBDPzBTCe9LH4Ozjm','8','2016-05-21 14:22:31','2016-05-21 14:22:31'),(10,'Pikatchu','pokemon','2016-05-19','pikatchu@gmail.com',NULL,'$2b$12$FN0s3Rn2TV3pIU6s1QiAEem6HXjnlHZivvHwcOa9yqyR9odH65tLa','8','2016-05-21 15:07:36','2016-05-21 15:07:36'),(11,'Michael','Jordan','1994-12-29','michael@nike.com',NULL,'$2b$12$4LbBLevBoYkhut05GFI5vuoGLvNH/Sz7bcL06IXgAYCHMZY5x.wpC','8','2016-05-21 15:16:03','2016-05-21 15:16:03'),(12,'Kobe','Bryant','2016-06-29','kobe@bryant.com',NULL,'$2b$12$N5GEu0729sSfI6OYw/BlruSvYgHwDRpv9WH9fxb08ytr8ZF0AY14S','8','2016-05-21 15:19:08','2016-05-21 15:19:08'),(13,'test','testo','2016-05-26','test@test.col',NULL,'$2b$12$2K.QO4LlckWgOguUgXYesODE7RXwY4t8DnZkQiKZCd7mG2luLTS9W','8','2016-05-21 20:37:17','2016-05-21 20:37:17'),(14,'Deandre','harvey','2016-05-09','test@yomama.com',NULL,'$2b$12$ctsvkK0pNf.g2s9YWB7ig.wz3mWVwZeJXAC8ZtyoX/03xAzQMa/Qy','9','2016-05-26 09:45:26','2016-05-26 09:45:26');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -118,4 +118,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-20 22:19:43
+-- Dump completed on 2016-05-26 21:32:17
