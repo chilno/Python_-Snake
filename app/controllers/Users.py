@@ -186,8 +186,11 @@ class Users(Controller):
         else:
             print "else"
             if request.form['userCords[longitude]']:
+                print "1"
                 userCordsLng = request.form['userCords[longitude]']
+                print "2"
                 userCordsLat = request.form['userCords[latitude]']
+                print "3"
                 userPos = {
                     'lng': userCordsLng,
                     'lat': userCordsLat
