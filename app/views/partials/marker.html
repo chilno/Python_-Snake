@@ -39,11 +39,15 @@
         var name = place.name;
         var Rid;
         $.get('http://opentable.herokuapp.com/api/restaurants?name='+name, function(res){
-            console.log(res);
+        Rid = res['restaurants'][0]['id'];
+        console.log(Rid);
         });   
         google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-          'Place address: ' + place.formatted_address + '</div>');
+            if (typeof Rid == null){
+                infowindow.setContent('<div><strong>' + place.name + '</strong><br>');
+                infowindow.open(map, this);}
+                
+          infowindow.setContent('<div><strong>' + place.name + '</strong><br>'+'<a href="http://www.opentable.com/single.aspx?rid='+Rid+'&restref='+Rid+'&rtype=ism">Reserve Now  on OpenTable.com</a>' + '</div>');
           infowindow.open(map, this);
         });
       }
